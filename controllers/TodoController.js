@@ -21,15 +21,21 @@ const updateTodo = async (req, res) => {
 
     await ToDoModel
         .findByIdAndUpdate( _id, {text})
-        .then(() => console.log("Updated Succesfully"))
+        .then((data) => {
+            console.log("Updated Succesfully")
+            res.send(data)
+        })
         .catch((error) => console.log(error))
 };
 
-const deleteTodo = async (req, res) => {
+const deleteTodo = (req, res) => {
     const { _id } = req.body;
 
-    await ToDoModel.findByIdAndDelete(_id)
-    .then(() => console.log("Deleted Successfully"))
+     ToDoModel.findByIdAndDelete(_id)
+    .then((data) => {
+        console.log("Deleted Successfully")
+        res.send(data)
+    })
     .catch((error) => console.log(error))
 };
 
